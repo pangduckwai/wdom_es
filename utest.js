@@ -40,7 +40,7 @@ let testPlayers = () => {
 		Player.receive({"type": Player.EVENT.deletePlayer, "name": "Paul"})
 	));
 	console.log(JSON.stringify(
-		Player.receive({"type": Player.EVENT.deletePlayer, "id": PSnapshot.retrieveByName("John").id})
+		Player.receive({"type": Player.EVENT.deletePlayer, "id": PSnapshot.retrieve("John").id})
 	));
 };
 
