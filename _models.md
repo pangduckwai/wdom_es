@@ -1,0 +1,18 @@
+### Commands
+- signIn
+  - createGame
+  - joinGame
+    - startGame
+      - nextRound
+      - startRound
+        - nextTurn (next player)
+        - startTurn
+          - getBaseReinforcement
+          - getContinentReinforcement
+          - getCardReinforcement
+        - endTurn
+      - endRound
+    - winGame
+    - loseGame
+  - quitGame
+- signOff
