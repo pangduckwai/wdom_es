@@ -1,25 +1,41 @@
 const PSnapshot = require('./players');
 
 const EVENT = {
-	createPlayer: "createPlayer",
-	deletePlayer: "deletePlayer",
-	createGame: "createGame",
-	joinGame: "joinGame",
-	leaveGame: "leaveGame",
-	startTurn: "startTurn",
-	endTurn: "endTurn",
-	receiveBasicReinforcement: "receiveBasicReinforcement",
-	receiveContinentReinforcement: "receiveContinentReinforcement",
-	receiveCardReinforcement: "receiveCardReinforcement",
-	attack: "attack",
-	fortify: "fortify",
-	sustainCasualty: "sustainCasualty",
-	winBattle: "winBattle",
-	loseBattle: "loseBattle",
-	earnCard: "earnCard",
-	redeemCard: "redeemCards",
-	winGame: "winGame",
-	loseGame: "loseGame"
+	   playerSignedIn: {
+		id: "playerSignedIn"
+	}, playerSignedOff: {
+		id: "playerSignedOff"
+	}, playerQuit: {
+		id: "playerQuit"
+	}, playerCreated: {
+		id: "playerCreated" // player created a game
+	}, playerJoined: {
+		id: "playerJoined"
+	}, playerStarted: {
+		id: "playerStarted"
+	}, playerWon: {
+		id: "playerWon"
+	}, playerLost: {
+		id: "playerLost"
+	}, playerClaimStarted: {
+		id: "playerClaimStarted",
+		option: {
+			hasMoreArmy: [],
+			noMoreArmy: ["claimEnded"]
+		}
+	}, playerTurnStarted: {
+		id: "playerTurnStarted"
+	}, reinforcementAdded: {
+		id: "reinforcementAdded"
+	}, reinforcementDeployed: {
+		id: "reinforcementDeployed"
+	}, deploymentEnded: {
+		id: "deploymentEnded"
+	}, attackCommenced: {
+		id: "attackCommenced"
+	}, beingAttacked: {
+		id: "beingAttacked"
+	}
 };
 
 // {

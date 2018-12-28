@@ -2,17 +2,17 @@
 - signIn
   - createGame
   - joinGame
-    - startGame
-      - nextRound
-      - startRound
-        - nextTurn (next player)
-        - startTurn
-          - getBaseReinforcement
-          - getContinentReinforcement
-          - getCardReinforcement
-        - endTurn
-      - endRound
-    - winGame
-    - loseGame
+  - startGame
+    - startRound
+      - startTurn
+        - redeemCards
+        - assignReinforcement
+        - attack
+        - fortify
+      - endTurn
+      - nextTurn (next player)
+    - endRound
+    - nextRound
+    - endGame
   - quitGame
 - signOff

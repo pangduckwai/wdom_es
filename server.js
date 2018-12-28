@@ -47,7 +47,7 @@ app.use(express.static('html', { index: false }));
 // app.use('/game', game);
 
 //Main
-require('./utest')(); // Run unit tests
+require('./utest2')(); // Run unit tests
 
 app.listen(cnst.SERVER_PORT, () => {
 	console.log(`WDOM_ES on port ${cnst.SERVER_PORT}; Max no. of games: ${cnst.MAX_GAME}; Max no. of players per game: ${cnst.MAX_PLAYER}`);
