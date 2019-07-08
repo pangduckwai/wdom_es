@@ -1,0 +1,213 @@
+/* Generic classes */
+.flex-row {
+	display: flex;
+	flex-direction: column;
+}
+.flex-col {
+	display: flex;
+	flex-direction: row;
+}
+.flex-pane {
+	display: flex;
+	justify-content: center;
+}
+.flex-1 {
+	flex: 1;
+}
+.flex-2 {
+	flex: 2;
+}
+.vamid {
+	vertical-align: middle;
+	padding: 5px;
+	margin: 5px;
+}
+.vatop {
+	vertical-align: top;
+}
+.taleft {
+	text-align: left;
+}
+.largetxt {
+	font-size: 2em;
+}
+.btn-narrow {
+	min-width: 0;
+	padding: 5px;
+}
+.fillh {
+	width: 100%;
+}
+.fillv {
+	height: 100%;
+}
+.fillv2 {
+	height: calc(100% - 20px);
+}
+
+/* Element specific classes */
+.toolbar {
+	position: relative;
+	z-index: 2;
+	flex: 0 1 auto;
+}
+.container {
+	flex: 1 1 auto;
+}
+.navbar {
+	min-width: 150px;
+}
+.app-home {
+	margin: 10px;
+	width: calc(100% - 20px);
+	background: url('/assets/wdom.svg');
+	background-size: 100% 100%;
+}
+.matcard {
+	background-color: rgba(35, 35, 35, 0.9);
+	position: relative;
+	z-index: 1;
+	margin: 10px;
+}
+.matctnt {
+	/* margin: 0 0 0 25px; */
+	overflow-y: hidden;
+}
+.chat-list {
+	height:80%;
+	overflow-y: auto;
+}
+.chat-inpt {
+	height: 20%;
+}
+.chat-name {
+	flex: 0 1 auto;
+	height: 100%;
+	margin: 3px;
+	overflow: hidden;
+	color: lightblue;
+}
+.chat-mssg {
+	flex: 1 1 auto;
+	height: 100%;
+	margin: 3px;
+}
+.app-game {
+	margin: 10px;
+	width: calc(100% - 20px);
+}
+.map-game {
+	height: calc(100% - 5px);
+}
+
+/* Classes for the map */
+path {
+	stroke:darkolivegreen;
+	stroke-width: 2px;
+}
+line {
+	stroke:darkolivegreen;
+	stroke-width: 2px;
+}
+svg {
+	background-color:lightskyblue;
+}
+.cname {
+	fill: #101010;
+	font-size: 1em;
+	font-weight: bold;
+	text-anchor: middle;
+	dominant-baseline: middle;
+	display: none;
+}
+.carmy {
+	fill: #101010;
+	font-size: 0.8em;
+	font-weight: normal;
+	text-anchor: middle;
+	dominant-baseline: middle;
+	display: block;
+}
+.c:hover path { opacity: 0.5; }
+.c:hover .cname { display: block; }
+.c:hover .carmy { display: none; }
+.s path { opacity: 0.5; }
+.s .cname { display: none; }
+.s .carmy { display: block; font-weight: bold; font-size: 1.2em; }
+.c:hover.s .cname { display: none; }
+.c:hover.s .carmy { display: block; }
+.l path { opacity: 0.5; }
+
+polyline {
+	stroke:black;
+	stroke-width: 2;
+}
+
+.s polyline {
+	animation-name: flag;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+}
+@keyframes flag {
+	0% {
+		stroke:black;
+	}
+	25% {
+		stroke:lightgrey;
+	}
+	50% {
+		stroke:white;
+	}
+	75% {
+		stroke:darkgrey;
+	}
+	100% {
+		stroke:black;
+	}
+}
+
+.player1 { fill:red; }
+.player2 { fill:blueviolet; }
+.player3 { fill:burlywood; }
+.player4 { fill:aqua; }
+.player5 { fill:black; }
+.player6 { fill:white; }
+
+#Africa .v0 { fill:#deb887; }
+#Africa .v1 { fill:#deae70; }
+#Africa .v2 { fill:#dea357; }
+#Africa .v3 { fill:#de9c47; }
+#Asia .v0 { fill:#90ee90; }
+#Asia .v1 { fill:#77ee77; }
+#Asia .v2 { fill:#5fee5f; }
+#Asia .v3 { fill:#47ee47; }
+#Asia .v4 { fill:#28ee28; }
+#Asia .v5 { fill:#b7eeb7; }
+#Australia .v0 { fill:#da70d6; }
+#Australia .v1 { fill:#da5cd5; }
+#Australia .v2 { fill:#da48d4; }
+#Australia .v3 { fill:#da32d4; }
+#Europe .v0 { fill:#7ea6ed; }
+#Europe .v1 { fill:#6b99ed; }
+#Europe .v2 { fill:#588ded; }
+#Europe .v3 { fill:#4581ed; }
+#Europe .v4 { fill:#3275ed; }
+#North-America .v0 { fill:#ffa07a; }
+#North-America .v1 { fill:#ff956b; }
+#North-America .v2 { fill:#ff8a5c; }
+#North-America .v3 { fill:#ff7c47; }
+#North-America .v4 { fill:#ff6d33; }
+#South-America .v0 { fill:#9370d8; }
+#South-America .v1 { fill:#885fd8; }
+#South-America .v2 { fill:#7c4ed8; }
+
+.badge {
+	stroke:black;
+	stroke-width: 1;
+}
+.title {
+	font-size: 1.2em;
+	font-weight: normal;
+	text-anchor: left;
+	dominant-baseline: bottom;
+}

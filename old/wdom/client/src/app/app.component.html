@@ -1,0 +1,25 @@
+<div class="flex-row fillh fillv">
+	<md-toolbar color="primary" class="toolbar mat-elevation-z20">
+		<button md-button class="btn-narrow" (click)="sidenav.toggle()"><md-icon>menu</md-icon></button>
+		<span class="vamid">{{title}}</span>
+	</md-toolbar>
+
+	<md-sidenav-container class="container fillv">
+		<md-sidenav #sidenav mode="side" opened="true" class="navbar">
+			<md-nav-list>
+				<a md-list-item routerLink="/home" routerLinkActive="active">
+					<md-icon>home</md-icon>&nbsp;&nbsp;Home
+				</a>
+				<a md-list-item routerLink="/game" routerLinkActive="active">
+					<md-icon>golf_course</md-icon>&nbsp;&nbsp;Game
+				</a>
+				<a md-list-item>
+					<md-icon>info_outline</md-icon>&nbsp;&nbsp;About
+				</a>
+			</md-nav-list>
+		</md-sidenav>
+		<div class="fillh fillv2">
+			<router-outlet></router-outlet>
+		</div>
+	</md-sidenav-container>
+</div>

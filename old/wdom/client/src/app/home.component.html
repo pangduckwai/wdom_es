@@ -1,0 +1,133 @@
+<div class="app-home fillv flex-col">
+	<md-card class="matcard flex-1 fillv2">
+		<md-card-header>
+			<md-icon md-card-avatar color="warn">group</md-icon>
+			<md-card-title class="largetxt">Available Rooms</md-card-title>
+		</md-card-header>
+		<md-card-content class="matctnt">
+			<md-list class="fillh fillv" *ngIf="rooms && (rooms.length > 0)">
+				<md-list-item [class]="vamid" *ngFor="let rm of rooms">
+					<button md-button (click)="select(rm.room, userjoin)" [disabled]="joined">
+						<md-icon color="primary">games</md-icon>
+						<span style="font-size:1.2em">Room "{{rm.room}}"</span>
+					</button>
+					<div style="margin:0 0 15px 45px;">Members:
+						<span *ngFor="let user of rm.users">&nbsp;&nbsp;{{user}}</span>
+					</div>
+				</md-list-item>
+			</md-list>
+			<p *ngIf="!rooms || (rooms.length <= 0)">
+				<br/>No existing room available
+			</p>
+		</md-card-content>
+	</md-card>
+	<div class="flex-2 flex-row">
+		<div class="flex-1 flex-col">
+			<md-card class="matcard flex-1">
+				<md-card-header>
+					<md-icon md-card-avatar color="accent">person_add</md-icon>
+					<md-card-title class="largetxt">Join Room</md-card-title>
+				</md-card-header>
+				<md-card-content class="matctnt">
+					<div>
+						<md-input-container color="accent">
+							<input mdInput placeholder="Room to join" [(ngModel)]="roomJoin" [readonly]="true">
+						</md-input-container>
+					</div>
+					<div>
+						<md-input-container color="accent">
+							<input #userjoin mdInput placeholder="Your alias" [(ngModel)]="userJoin" [readonly]="joined">
+						</md-input-container>
+					</div>
+				</md-card-content>
+				<md-card-actions>
+					<button md-raised-button style="margin-left:10px" (click)="join(roomJoin, userJoin, false)" [disabled]="joined">
+						<md-icon>person_add</md-icon> Join
+					</button>
+				</md-card-actions>
+			</md-card>
+			<md-card class="matcard flex-1">
+				<md-card-header>
+					<md-icon md-card-avatar color="accent">group_add</md-icon>
+					<md-card-title class="largetxt">Open Room</md-card-title>
+				</md-card-header>
+				<md-card-content class="matctnt">
+					<div>
+						<md-input-container color="accent">
+							<input #roomopen mdInput placeholder="Room name" [(ngModel)]="roomOpen" [readonly]="joined" autofocus>
+						</md-input-container>
+					</div>
+					<div>
+						<md-input-container color="accent">
+							<input mdInput placeholder="Your alias" [(ngModel)]="userOpen" [readonly]="joined">
+						</md-input-container>
+					</div>
+				</md-card-content>
+				<md-card-actions>
+					<button md-raised-button style="margin-left:10px" (click)="open()" [disabled]="joined">
+						<md-icon>group_add</md-icon> Open
+					</button>
+				</md-card-actions>
+			</md-card>
+		</div>
+		<md-card class="matcard flex-1" *ngIf="joined">
+			<md-card-header>
+				<md-icon md-card-avatar color="primary">group</md-icon>
+				<md-card-title>
+					<span class="largetxt">Room "{{room}}"</span>&nbsp;&nbsp;&nbsp;
+					<span *ngIf="owner === user">({{user}})</span>
+				</md-card-title>
+			</md-card-header>
+			<div class="flex-col fillv">
+				<div class="flex-1">
+					<md-card-content class="matctnt">
+						<div>
+							<md-input-container color="accent">
+								<input mdInput placeholder="Host" [readonly]="true"
+									[ngModel]="(owner === user) ? 'You are the host' : owner">
+							</md-input-container>
+							&nbsp;
+							<md-input-container color="accent" *ngIf="owner !== user">
+								<input mdInput placeholder="Me" [ngModel]="user" [readonly]="true">
+							</md-input-container>
+						</div>
+						<div>
+							<md-list>
+								<md-list-item [class]="vamid" *ngFor="let mem of (users | otherUsers:user:owner)">
+									<button md-button class="taleft">
+										<md-icon color="warn">person</md-icon> <span>{{mem}}</span>
+									</button>
+								</md-list-item>
+							</md-list>
+						</div>
+					</md-card-content>
+					<md-card-actions>
+						<button md-raised-button style="margin-left:10px" (click)="start()" *ngIf="owner === user">
+							<md-icon>power_settings_new</md-icon> Start
+						</button>
+						<button md-raised-button style="margin-left:10px" (click)="close(roomopen)" *ngIf="owner === user">
+							<md-icon>close</md-icon> Close
+						</button>
+						<button md-raised-button style="margin-left:10px" (click)="leave()" *ngIf="owner !== user">
+							<md-icon>directions_run</md-icon> Leave
+						</button>
+					</md-card-actions>
+				</div>
+				<div class="flex-1 flex-row">
+					<md-list class="fillh chat-list">
+						<md-list-item class="vatop fillh flex-col" *ngFor="let msg of chatMsgs">
+								<div class="chat-name">{{msg.user}}:</div>
+								<div class="chat-mssg">{{msg.message}}</div>
+						</md-list-item>
+					</md-list>
+					<md-input-container color="accent" class="chat-inpt">
+						<input mdInput placeholder="Enter chat message" [(ngModel)]="chatMsg" (keyup.enter)="send()">
+					</md-input-container>
+				</div>
+			</div>
+		</md-card>
+		<md-card class="matcard flex-1" *ngIf="!joined">
+			<md-card-content>&nbsp;</md-card-content>
+		</md-card>
+	</div>
+</div>

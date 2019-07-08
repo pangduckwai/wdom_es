@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+<title>SEA9.ORG</title>
+<meta charset="utf-8"/>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=5.0' />
+<meta name="Description" content="SEA9.ORG home page">
+<style type="text/css">
+textarea, input {
+	font-family: 'Courier New', Courier, monospace;
+	font-size: .8em;
+	margin: 3px;
+}
+p1 { color: red; }
+p2 { color: black; }
+p3 { color: green; }
+p4 { color: yellow; }
+p5 { color: blue; }
+p6 { color: white; }
+</style>
+</head>
+<body onload="init()">
+	<p>
+		<button onclick="setUrl('player');">Players</button>
+		<button onclick="setUrl('game');">Games</button><br>
+		<input id="rqst" type="text" size="50">
+		<button onclick="get();">GET</button>
+		<button onclick="post();">POST</button>
+		<button onclick="put();">PUT</button>
+		<button onclick="remove();">Delete</button>
+		<button onclick="document.getElementById('resp').textContent = ''">Clear</button><br>
+		<input id="hdrn" type="text" size="20"><input id="hdrv" type="text" size="60"><br>
+		<textarea id="data" rows="15" cols="80"></textarea><br>
+		<textarea id="resp" rows="20" cols="80" readonly></textarea>
+	</p>
+<script src="utest.js" type="text/javascript"></script>
+<script type="text/javascript">
+function getReqHdr() {
+	let rtn = {};
+	let hdrn = document.getElementById("hdrn").value;
+	let hdrv = document.getElementById("hdrv").value;
+	rtn[hdrn] = hdrv;
+	return rtn;
+}
+function setResp(hdr, dat) {
+	let hdrs = parseResHeader(hdr);
+	if (typeof hdrs['acctoken'] !== "undefined") {
+		document.getElementById("hdrn").value = 'acctoken';
+		document.getElementById("hdrv").value = hdrs['acctoken'];
+	}
+	document.getElementById("resp").textContent += '\n' + dat;
+}
+function setUrl(srv) {
+	let v = window.location.protocol + '//' + window.location.host;
+	if ((typeof srv !== "undefined") && (srv !== null)) v += '/' + srv;
+	document.getElementById("rqst").value = v;
+}
+
+function get() {
+	let url = document.getElementById("rqst").value;
+	ajax('GET', url, getReqHdr(), null, (hdr, dat) => setResp(hdr, dat));
+}
+function post() {
+	let url = document.getElementById("rqst").value;
+	let bdy = document.getElementById("data").value;
+	ajax('POST', url, getReqHdr(), bdy, (hdr, dat) => setResp(hdr, dat));
+}
+function put() {
+	let url = document.getElementById("rqst").value;
+	let bdy = document.getElementById("data").value;
+	ajax('PUT', url, getReqHdr(), bdy, (hdr, dat) => setResp(hdr, dat));
+}
+function remove() {
+	let url = document.getElementById("rqst").value;
+	let bdy = document.getElementById("data").value;
+	ajax('DELETE', url, getReqHdr(), bdy, (hdr, dat) => setResp(hdr, dat));
+}
+function init() {
+	setUrl();
+}
+</script>
+</body>
+</html>
